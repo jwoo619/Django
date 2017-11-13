@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{post.title}}</title>
-</head>
-<body>
-	<h2>{{ object.title }}</h2>
+{% extends "base.html" %}
+
+{% block title %}post_all.html{% endblock %}
+
+{% block content %}
+<div id="content">
+
+	<h2>{{object.title}}</h2>
 
 	<p class="other_posts">
 		{% if object.get_previous_by_modify_date %}
@@ -22,5 +23,7 @@
 	<div class="body">
 		{{ object.content|linebreaks }}
 	</div>
-</body>
-</html>
+
+
+</div>
+{% endblock %}

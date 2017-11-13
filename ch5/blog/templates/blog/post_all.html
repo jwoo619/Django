@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Tello 의 블로그!</title>
-</head>
-<body>
-	<h1>Blog List</h1>
+{% extends "base.html" %}
 
-	{% for post in posts %}
+{% block title %}post_all.html{% endblock %}
+
+{% block content %}
+<div id="content">
+	<h1>Blog List</h1>
+	{% for post in object_list %}
 		<h2><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h2>
 		{{ post.modify_date|date:"N d, Y" }}
 		<p>{{ post.description }}</p>
-	{% endfor%}
-
-	<br/>
+	{% endfor %}
 
 	<div>
 		<span>
@@ -26,6 +23,8 @@
 				<a href="?page={{ page_obj.next_page_number}}">NextPage</a>
 			{% endif%}
 		</span>
-	</div>	
-</body>
-</html>
+	</div>
+
+
+</div>
+{% endblock %}

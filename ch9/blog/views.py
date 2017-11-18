@@ -53,4 +53,12 @@ class SearchFormView(FormView):
     template_name = 'blog/post_search.html'
 
     def form_valid(self, form):
-        
+        schWord = '%s' % self.request.POST['search_word']
+        post_list = Post.objects.filter(Q(title__icontains=schWord)|Q(description__icontains=schWord)|Q(content__icontains=schWord)).distinct()
+
+        context = {}
+        context['form'] = form
+        context['search_term'] = schWord
+        context['object_list'] = post_list
+
+        return render(self.request, self.template_name, context)

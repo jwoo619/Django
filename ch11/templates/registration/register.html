@@ -11,8 +11,8 @@
 	<h1>New User Registration </h1>
 
 	<form method="post" action="." >{% csrf_token %}
-		
 		{% if form.errors %}
+		{{ form.errors }}
 		<p class="errornote">Wrong! Please correct the error(s) below.</p>
 		{% endif %}
 
